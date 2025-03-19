@@ -84,26 +84,39 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+# 이미지 로드
 image = cv2.imread('./data/JohnHancocksSignature.png', cv2.IMREAD_UNCHANGED)
 _, b_image = cv2.threshold(image[:, :, 3], 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 binary = b_image[b_image.shape[0] // 2:b_image.shape[0], 0:b_image.shape[0] // 2 + 1]
 
+# 커널 정의
 kernel = np.uint8([[0,0,1,0,0],
                    [0,1,1,1,0],
                    [1,1,1,1,1],
                    [0,1,1,1,0],
                    [0,0,1,0,0]])
 
+# 형태학 연산 수행
 Dilation = cv2.dilate(binary, kernel)
 Erosion = cv2.erode(binary, kernel)
 Close = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
 Open = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)
 
-result = np.hstack((binary, Dilation, Erosion, Close, Open))
+# 이미지 배열 준비
+images = [binary, Dilation, Erosion, Close, Open]
+titles = ['Binary', 'Dilation', 'Erosion', 'Close', 'Open']
 
-cv2.imshow('result', result)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# 결과 시각화 (matplotlib 사용)
+plt.figure(figsize=(15,5))
+
+for i in range(len(images)):
+    plt.subplot(1, 5, i+1)
+    plt.imshow(images[i], cmap='gray')
+    plt.title(titles[i])
+    plt.axis('off')
+
+plt.tight_layout()
+plt.show()
 ```
 
 ### 🖼️ 결과 이미지
@@ -125,9 +138,12 @@ cv2.destroyAllWindows()
 import cv2
 import matplotlib.pyplot as plt
 
+angle = 45  # 회전 각도 설정
+
 image = cv2.imread('./data/rose.png')
 rows, cols = image.shape[:2]
-rotation_matrix = cv2.getRotationMatrix2D((cols/2, rows/2), 45, 1.5)
+
+rotation_matrix = cv2.getRotationMatrix2D((cols/2, rows/2), angle, 1.5)
 rotated_scaled_image = cv2.warpAffine(image, rotation_matrix, (int(cols*1.5), int(rows*1.5)), flags=cv2.INTER_LINEAR)
 
 plt.figure(figsize=(15, 8))
@@ -138,7 +154,7 @@ plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 plt.axis('off')
 
 plt.subplot(1, 2, 2)
-plt.title('Rotated & Scaled Image')
+plt.title(f'Rotated & Scaled Image ({angle}°)')
 plt.imshow(cv2.cvtColor(rotated_scaled_image, cv2.COLOR_BGR2RGB))
 plt.axis('off')
 
