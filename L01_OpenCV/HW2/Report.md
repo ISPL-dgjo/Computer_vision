@@ -66,7 +66,7 @@ plt.show()
 ```
 
 ### 🖼️ 결과 이미지
-![Result 1](./data/result1.jpg)
+![Result 1](./data/result1.png)
 
 ---
 
@@ -107,7 +107,7 @@ cv2.destroyAllWindows()
 ```
 
 ### 🖼️ 결과 이미지
-![Result 2](./data/result2.jpg)
+![Result 2](./data/result2.png)
 
 ---
 
@@ -147,7 +147,7 @@ plt.show()
 ```
 
 ### 🖼️ 결과 이미지
-![Result 3](./data/result3.jpg)
+![Result 3](./data/result3.png)
 
 ---
 
