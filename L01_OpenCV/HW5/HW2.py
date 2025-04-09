@@ -68,7 +68,7 @@ def predict_custom_image(img_path):
     pred_class = np.argmax(prediction)
     confidence = np.max(prediction)
 
-    print(f"[✓] 예측 결과: {class_names[pred_class]} ({confidence:.2%} 확신)")
+    print(f"[✓] 예측 결과: {class_names[pred_class]}")
 
 # 9. 실제 이미지 예측
 predict_custom_image("./data/testimg.jpg")
