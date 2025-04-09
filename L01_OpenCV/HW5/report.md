@@ -60,6 +60,9 @@ predict_custom_image("./data/testimg.jpg")
 ### 🪜 에폭별 정확도
 ![result2_epochs](./data/result2_epochs.png)
 
+### 🧪 테스트 이미지
+![result2_testimg](./data/testimg.jpg)
+
 ### 🧪 테스트 이미지 예측 결과
 ![result2_test](./data/result2_test.png)
 
