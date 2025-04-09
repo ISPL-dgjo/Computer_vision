@@ -87,9 +87,6 @@ for layer in base_model.layers:
 ### 🪜 에폭별 정확도
 ![result3_epochs](./data/result3_epochs.png)
 
-### 🧪 테스트 성능
-![result3_test](./data/result3_test.png)
-
 ---
 
 ## 📌 결론
